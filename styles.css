@@ -559,6 +559,67 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 22, 40, 0.75);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #00D9FF;
+    color: #0A1628;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.brand-name {
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 1.125rem;
+    letter-spacing: 0.5px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-nav a {
+    color: #B8C5D1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+    color: #FFFFFF;
+}
+
 /* Focus states for accessibility */
 .cta-button:focus,
 .download-badge:focus {
