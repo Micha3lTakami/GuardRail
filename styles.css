@@ -564,9 +564,21 @@ html {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(10, 22, 40, 0.75);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 22, 40, 0.95);
     border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 22, 40, 0.8);
+    z-index: -1;
 }
 
 .header-inner {
@@ -574,6 +586,8 @@ html {
     align-items: center;
     justify-content: space-between;
     height: 72px;
+    position: relative;
+    z-index: 1;
 }
 
 .brand {
@@ -618,6 +632,42 @@ html {
 
 .header-nav a:hover {
     color: #FFFFFF;
+}
+
+/* Mobile header responsiveness */
+@media (max-width: 768px) {
+    .header-nav {
+        gap: 16px;
+    }
+    
+    .header-nav a {
+        font-size: 0.9rem;
+    }
+    
+    .brand-name {
+        font-size: 1rem;
+    }
+    
+    .brand-mark {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-nav {
+        gap: 12px;
+    }
+    
+    .header-nav a {
+        font-size: 0.8rem;
+    }
+    
+    .cta-button.secondary {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
 }
 
 /* Focus states for accessibility */
