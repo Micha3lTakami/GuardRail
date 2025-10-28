@@ -41,15 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Add hover effects to CTA buttons
+    // Add enhanced hover effects to CTA buttons
     const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px) scale(1.05)';
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.boxShadow = '0 12px 40px rgba(0, 217, 255, 0.5)';
         });
         
         button.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '';
         });
     });
 
@@ -98,6 +100,50 @@ document.addEventListener('DOMContentLoaded', function() {
         
         svgObserver.observe(svg);
     });
+
+    // Add enhanced animations for logo items
+    const logoItems = document.querySelectorAll('.logo-item');
+    logoItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.05)';
+            this.style.filter = 'grayscale(0%) opacity(1)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.filter = 'grayscale(100%) opacity(0.6)';
+        });
+    });
+
+    // Add staggered animation for logo grid
+    const logosGrid = document.querySelector('.logos-grid');
+    if (logosGrid) {
+        const logoObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const logos = entry.target.querySelectorAll('.logo-item');
+                    logos.forEach((logo, index) => {
+                        setTimeout(() => {
+                            logo.style.opacity = '1';
+                            logo.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        logosGrid.style.opacity = '0';
+        logosGrid.style.transform = 'translateY(20px)';
+        logosGrid.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
+        logosGrid.querySelectorAll('.logo-item').forEach(logo => {
+            logo.style.opacity = '0';
+            logo.style.transform = 'translateY(20px)';
+            logo.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        });
+        
+        logoObserver.observe(logosGrid);
+    }
 
     // Add typing effect to hero title (optional enhancement)
     const heroTitle = document.querySelector('.hero-title');
@@ -226,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const focusableElements = document.querySelectorAll('button, a, input, textarea, select');
     focusableElements.forEach(element => {
         element.addEventListener('focus', function() {
-            this.style.outline = '2px solid #4ade80';
+            this.style.outline = '2px solid #00D9FF';
             this.style.outlineOffset = '2px';
         });
         
