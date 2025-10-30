@@ -161,6 +161,50 @@ document.addEventListener('DOMContentLoaded', function() {
         logoObserver.observe(logosGrid);
     }
 
+    // 3D hover tilt for all screenshots and footer card
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+    const prefersNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (supportsHover && !prefersNoMotion) {
+        const tiltContainers = document.querySelectorAll('.screenshot-wrapper, .screenshot-container, .cta-card, .step-card');
+        tiltContainers.forEach(container => {
+            const maxRotate = container.classList.contains('cta-card') || container.classList.contains('step-card') ? 5 : 10; // degrees
+            const onMove = (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = ((x - centerX) / centerX) * maxRotate;
+                const rotateX = -((y - centerY) / centerY) * maxRotate;
+                
+                if (container.classList.contains('cta-card')) {
+                    container.style.transform = `translateY(-8px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+                } else if (container.classList.contains('step-card')) {
+                    container.style.transform = `translateY(-8px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+                } else {
+                    const image = container.querySelector('.feature-screenshot');
+                    if (image) {
+                        image.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.03)`;
+                    }
+                }
+            };
+            const onLeave = () => {
+                if (container.classList.contains('cta-card')) {
+                    container.style.transform = 'translateY(-8px) rotateX(2deg) rotateY(1deg)';
+                } else if (container.classList.contains('step-card')) {
+                    container.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
+                } else {
+                    const image = container.querySelector('.feature-screenshot');
+                    if (image) {
+                        image.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+                    }
+                }
+            };
+            container.addEventListener('mousemove', onMove);
+            container.addEventListener('mouseleave', onLeave);
+        });
+    }
+
     // Add typing effect to hero title (optional enhancement)
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
