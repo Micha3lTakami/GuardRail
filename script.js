@@ -453,7 +453,7 @@ function initMobileMenu() {
 }
 
 /**
- * Smooth scroll for anchor links
+ * Smooth scroll for anchor links (nav and in-page # links)
  */
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -472,10 +472,9 @@ function initSmoothScroll() {
             
             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
             
-            gsap.to(window, {
-                scrollTo: { y: targetPosition, autoKill: false },
-                duration: ANIMATION_CONFIG.duration.slow,
-                ease: ANIMATION_CONFIG.ease.inOut
+            window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: 'smooth'
             });
         });
     });
