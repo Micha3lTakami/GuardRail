@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuardRail - AI Safety for Children</title>
+    <title>GuardRail - AI Safety for Educators</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <!-- Site Header -->
@@ -25,88 +28,88 @@
                         <span class="hamburger"></span>
                     </button>
                     <div class="nav-links">
-                        <a href="#how-it-works">How it Works</a>
-                        <a href="#features">Features</a>
+                        <a href="#features" class="nav-link">Features</a>
+                        <a href="#how-it-works" class="nav-link">How it Works</a>
+                        <a href="#get-started" class="nav-link">Get Started</a>
+                        <a href="#faq" class="nav-link">FAQ</a>
                         <a href="#download" class="cta-button secondary">Join Waitlist</a>
                     </div>
                 </nav>
             </div>
         </div>
     </header>
+
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-particles" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Stop Worrying About Student AI Use. Start Teaching Through It.</h1>
-                <p class="hero-description">Shape smarter AI use, diagnose learning gaps in real-time, and build curriculum that meets students where they&nbsp;are.</p>
-                <button class="cta-button primary">Apply Now</button>
+                <h1 class="hero-title">
+                    <span class="hero-line" data-animation="reveal">Stop Worrying About Student AI Use.</span>
+                    <span class="hero-line" data-animation="reveal">Start Teaching Through It.</span>
+                </h1>
+                <p class="hero-description" data-animation="fade-up">Shape smarter AI use, diagnose learning gaps in real-time, and build curriculum that meets students where they&nbsp;are.</p>
+                <div class="hero-cta" data-animation="fade-up">
+                    <button class="cta-button primary magnetic">
+                        <span class="btn-text">Apply Now</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Feature 1: Guide -->
-    <section class="feature-section" id="features">
+    <section class="feature-section" id="features" data-section="guide">
         <div class="container">
             <div class="feature-content">
-                <div class="feature-image">
+                <div class="feature-image" data-animation="slide-in-left">
                     <div class="screenshots-container vertical">
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/Guide-Bad.png" alt="GuardRail Guide Feature - Off-task Detection" class="feature-screenshot" onerror="console.error('Failed to load Guide-Bad.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Guide Screenshot 2 - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/Guide-Bad.png" alt="GuardRail Guide Feature - Off-task Detection" class="feature-screenshot" loading="lazy">
                             <div class="screenshot-caption">Off-task Request Detection</div>
                         </div>
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/Guide-Good.png" alt="GuardRail Guide Feature - ChatGPT Intervention" class="feature-screenshot" onerror="console.error('Failed to load Guide-Good.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Guide Screenshot 1 - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/Guide-Good.png" alt="GuardRail Guide Feature - ChatGPT Intervention" class="feature-screenshot" loading="lazy">
                             <div class="screenshot-caption">Real-time Intervention via Chrome Extension</div>
                         </div>
                     </div>
                 </div>
-                <div class="feature-text">
+                <div class="feature-text" data-animation="slide-in-right">
+                    <span class="feature-badge">Guide</span>
                     <h2 class="feature-title">Turning Shortcuts into Teaching Moments</h2>
                     <p class="feature-description">AI blocks learning by giving shortcuts to students. GuardRail takes that learning back. When they attempt to offload thinking, GuardRail provides instant course correction that builds real understanding.</p>
                     <ul class="feature-benefits">
-                        <li>Real-time redirection based on your AI policy</li>
-                        <li>Transforms shortcuts into learning opportunities</li>
-                        <li>Builds critical thinking through guided reflection</li>
+                        <li data-animation="stagger">Real-time redirection based on your AI policy</li>
+                        <li data-animation="stagger">Transforms shortcuts into learning opportunities</li>
+                        <li data-animation="stagger">Builds critical thinking through guided reflection</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Feature 2: Analyze -->
-    <section class="feature-section alt">
+    <section class="feature-section alt" data-section="analyze">
         <div class="container">
-            <div class="feature-content">
-                <div class="feature-text">
+            <div class="feature-content reverse">
+                <div class="feature-text" data-animation="slide-in-left">
+                    <span class="feature-badge">Analyze</span>
                     <h2 class="feature-title">Know where your students are struggling.</h2>
                     <p class="feature-description">Get detailed insights into individual and classroom-wide learning gaps through AI conversation analysis. Identify patterns in how students approach problems, understand recurring obstacles, and trace exactly where learning breaks down.</p>
                     <ul class="feature-benefits">
-                        <li>Identify specific topics and concept gaps where students struggle</li>
-                        <li>Track student and classroom-wide AI usage patterns</li>
-                        <li>Designed with teachers in mind - clear insights without the learning curve</li>
+                        <li data-animation="stagger">Identify specific topics and concept gaps where students struggle</li>
+                        <li data-animation="stagger">Track student and classroom-wide AI usage patterns</li>
+                        <li data-animation="stagger">Designed with teachers in mind - clear insights without the learning curve</li>
                     </ul>
                 </div>
-                <div class="feature-image">
+                <div class="feature-image" data-animation="slide-in-right">
                     <div class="screenshots-container vertical">
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/analyze-group-fragment.png" alt="GuardRail Analyze Feature - Group Analysis" class="feature-screenshot" onerror="console.error('Failed to load analyze-group-fragment.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Analyze Group Fragment - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/analyze-group-fragment.png" alt="GuardRail Analyze Feature - Group Analysis" class="feature-screenshot" loading="lazy">
                         </div>
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/analyze-student-fragment.png" alt="GuardRail Analyze Feature - Student Analysis" class="feature-screenshot" onerror="console.error('Failed to load analyze-student-fragment.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Analyze Student Fragment - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/analyze-student-fragment.png" alt="GuardRail Analyze Feature - Student Analysis" class="feature-screenshot" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -114,35 +117,28 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Feature 3: Plan -->
-    <section class="feature-section">
+    <section class="feature-section" data-section="plan">
         <div class="container">
             <div class="feature-content">
-                <div class="feature-image">
+                <div class="feature-image" data-animation="slide-in-left">
                     <div class="screenshots-container vertical">
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/plan-fragment1.png" alt="GuardRail Plan Feature - Fragment 1" class="feature-screenshot" onerror="console.error('Failed to load plan-fragment1.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Plan Fragment 1 - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/plan-fragment1.png" alt="GuardRail Plan Feature - Fragment 1" class="feature-screenshot" loading="lazy">
                         </div>
-                        <div class="screenshot-wrapper">
-                            <img src="./Images/plan-fragment2.png" alt="GuardRail Plan Feature - Fragment 2" class="feature-screenshot" onerror="console.error('Failed to load plan-fragment2.png'); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="screenshot-placeholder" style="display:none; background: rgba(0,217,255,0.1); border: 2px dashed rgba(0,217,255,0.3); border-radius: 16px; padding: 40px; text-align: center; color: #B8C5D1;">
-                                <p>Plan Fragment 2 - Check console for loading error</p>
-                            </div>
+                        <div class="screenshot-wrapper" data-tilt>
+                            <img src="./Images/plan-fragment2.png" alt="GuardRail Plan Feature - Fragment 2" class="feature-screenshot" loading="lazy">
                         </div>
                     </div>
                 </div>
-                <div class="feature-text">
+                <div class="feature-text" data-animation="slide-in-right">
+                    <span class="feature-badge">Plan</span>
                     <h2 class="feature-title">Faster Planning, Smarter Curriculum</h2>
                     <p class="feature-description">Lesson plans powered by real student needs, not assumptions. Want to address the exact concepts your students are struggling with? Transform AI interaction insights into targeted curriculum in minutes.</p>
                     <ul class="feature-benefits">
-                        <li>AI-assisted planning that enhances your expertise, not replaces it</li>
-                        <li>Personalized curriculum planning at classroom scale</li>
-                        <li>Streamlined workflows that restore your teaching time</li>
+                        <li data-animation="stagger">AI-assisted planning that enhances your expertise, not replaces it</li>
+                        <li data-animation="stagger">Personalized curriculum planning at classroom scale</li>
+                        <li data-animation="stagger">Streamlined workflows that restore your teaching time</li>
                     </ul>
                 </div>
             </div>
@@ -152,22 +148,205 @@
     <!-- How it Works Section -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">How it Works</h2>
+            <h2 class="section-title" data-animation="fade-up">How it Works</h2>
             <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
+                <div class="step-card" data-animation="card-reveal" data-delay="0">
+                    <div class="step-icon">
+                        <span class="step-number">1</span>
+                    </div>
                     <h3 class="step-title">Guide</h3>
                     <p class="step-description">Ensures every AI interaction follows your teaching standards by redirecting students from shortcuts to critical thinking.</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
+                <div class="step-card" data-animation="card-reveal" data-delay="1">
+                    <div class="step-icon">
+                        <span class="step-number">2</span>
+                    </div>
                     <h3 class="step-title">Analyze</h3>
                     <p class="step-description">Highlight individual and classroom-wide learning gaps by analyzing student AI interactions to identify exactly where understanding breaks down.</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
+                <div class="step-card" data-animation="card-reveal" data-delay="2">
+                    <div class="step-icon">
+                        <span class="step-number">3</span>
+                    </div>
                     <h3 class="step-title">Plan</h3>
                     <p class="step-description">Transform AI-powered insights into actionable lesson plans that adapt your curriculum to real student needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started -->
+    <section class="get-started-section" id="get-started">
+        <div class="container">
+            <h2 class="section-title section-title-hero" data-animation="fade-up">Get Started</h2>
+
+            <div class="segment-card" data-animation="card-reveal">
+                <h3 class="segment-title">Installation</h3>
+                <ol class="steps-list">
+                    <li><strong>Download the extension</strong> — Click the link from your professor to download the GuardRail extension zip. Save it to your Downloads folder.</li>
+                    <li><strong>Unzip the file</strong> — Extract the zip. You should see a folder with the GuardRail extension files.</li>
+                    <li><strong>Load extension in Chrome</strong> — Open Chrome → <code>chrome://extensions</code>. Enable "Developer mode" (top-right). Click "Load unpacked" and select the <strong>dist</strong> folder inside the GuardRail folder.</li>
+                    <li><strong>Create account</strong> — Click the GuardRail icon in your toolbar and create an account.</li>
+                    <li><strong>Enter classroom code</strong> — Enter the code provided by your professor to join the pilot.</li>
+                    <li><strong>Verify setup</strong> — Visit ChatGPT or Google Gemini. You should see a small GuardRail indicator in the top-right corner.</li>
+                </ol>
+                <p class="segment-note">You're ready to go. GuardRail is now monitoring your AI tool usage to help you learn more effectively.</p>
+            </div>
+
+            <div class="segment-card" data-animation="card-reveal">
+                <h3 class="segment-title">How it works</h3>
+                <p>GuardRail evaluates your prompts based on learning intent:</p>
+                <ul class="segment-list">
+                    <li><strong>Good prompt:</strong> "Can you explain how async/await works in JavaScript? I'm getting errors in my fetch request."</li>
+                    <li><strong>Needs improvement:</strong> "Write my JavaScript homework"</li>
+                </ul>
+                <p>When GuardRail detects a shortcut-style prompt, it suggests ways to make it more effective for learning.</p>
+            </div>
+
+            <div class="segment-card segment-card-help" data-animation="card-reveal">
+                <h3 class="segment-title">Need help?</h3>
+                <p>Contact your professor or <a href="mailto:guardrail.feedback@proton.me">guardrail.feedback@proton.me</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title section-title-hero" data-animation="fade-up">FAQ</h2>
+
+            <div class="faq-category" data-animation="card-reveal">
+                <h3 class="faq-category-title">About GuardRail</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1">
+                            <span class="faq-question-text">What is GuardRail?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">GuardRail is a Chrome extension that helps you use AI tools like ChatGPT and Google Gemini more effectively. It encourages you to ask better questions that deepen your understanding instead of using AI as a shortcut.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">
+                            <span class="faq-question-text">Why did we build this?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">LLMs give students information in a revolutionary way, but it can be hard to retain if not curated. GuardRail helps you learn at your own pace while giving teachers insight to adapt lessons to student needs.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">
+                            <span class="faq-question-text">What makes a "good" prompt?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">Good prompts show your own thinking and ask for help with specific concepts. Examples: "Can you explain the difference between let and var in JavaScript?" or "I'm trying to center a div using flexbox but it's not working. Here's my code: [code]. What am I missing?"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" data-animation="card-reveal">
+                <h3 class="faq-category-title">Privacy & grades</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">
+                            <span class="faq-question-text">Does this affect my grade?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">No. This is a pilot for testing only. GuardRail has zero impact on your course grade. Your professor uses it to understand how students interact with AI, not to evaluate you.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">
+                            <span class="faq-question-text">What data does GuardRail collect?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">GuardRail collects your prompts and AI responses to: provide real-time feedback, help your professor understand classroom AI usage, and improve the product. Data is anonymized for product improvement and never shared with third parties.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">
+                            <span class="faq-question-text">Can my professor see my individual prompts?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">Yes. Your professor and TAs can see your prompts and AI responses when GuardRail is active, for educational purposes only—to understand how students learn with AI and provide better support. The purpose is educational insight, not surveillance or grading.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" data-animation="card-reveal">
+                <h3 class="faq-category-title">Using GuardRail</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-7" id="faq-q-7">
+                            <span class="faq-question-text">Can I turn GuardRail off?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-7" role="region" aria-labelledby="faq-q-7">Yes. Disable it anytime from the Chrome extensions menu (puzzle icon → find GuardRail → toggle off). You only need it on for web development coursework; turn it off for other classes or personal projects. For the pilot we encourage keeping it on during web dev work.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-8" id="faq-q-8">
+                            <span class="faq-question-text">How do I opt out of the pilot?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-8" role="region" aria-labelledby="faq-q-8">Participation is voluntary. Uninstall the extension (right-click icon → "Remove from Chrome") and email your professor or guardrail.feedback@proton.me to confirm. No penalty and it won't affect your grade or standing.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-9" id="faq-q-9">
+                            <span class="faq-question-text">Which AI tools does GuardRail work with?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-9" role="region" aria-labelledby="faq-q-9">Currently: ChatGPT and Google Gemini. We're adding more based on student feedback.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-10" id="faq-q-10">
+                            <span class="faq-question-text">What happens when I submit a prompt?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-10" role="region" aria-labelledby="faq-q-10">GuardRail analyzes it in real time. If it looks like a shortcut, GuardRail suggests improvements. If it's already a good learning prompt, you proceed without interruption.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-11" id="faq-q-11">
+                            <span class="faq-question-text">What if I disagree with GuardRail's feedback?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-11" role="region" aria-labelledby="faq-q-11">That's valuable feedback. If you think a prompt was misjudged, let us know—your input helps improve the system.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-12" id="faq-q-12">
+                            <span class="faq-question-text">How do I report a problem or flag feedback?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-12" role="region" aria-labelledby="faq-q-12">Use the Student Dashboard for overall feedback, or use the Reprompting UI to flag feedback directly when you disagree with an assessment. Flagging helps us improve GuardRail for everyone.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" data-animation="card-reveal">
+                <h3 class="faq-category-title">Troubleshooting</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-13" id="faq-q-13">
+                            <span class="faq-question-text">The extension isn't working. What do I do?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-13" role="region" aria-labelledby="faq-q-13">1) Refresh the page (ChatGPT or Gemini). 2) Check that you're signed into GuardRail (click the extension icon). 3) Make sure the extension is enabled in Chrome. 4) If still not working, email guardrail.feedback@proton.me</div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-14" id="faq-q-14">
+                            <span class="faq-question-text">Is GuardRail slowing down my AI tool?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-14" role="region" aria-labelledby="faq-q-14">There may be a 1–2 second delay while GuardRail analyzes your prompt. If it's significantly slower, please report it—performance issues are important pilot feedback.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" data-animation="card-reveal">
+                <h3 class="faq-category-title">Feedback & support</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-a-15" id="faq-q-15">
+                            <span class="faq-question-text">How do I provide feedback?</span>
+                            <span class="faq-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="faq-answer" id="faq-a-15" role="region" aria-labelledby="faq-q-15">Email guardrail.feedback@proton.me, talk to your professor, or use the feedback form in the extension. Tell us what works, what doesn't, and what you'd like improved. Your voice matters—if something feels off, speak up.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,18 +355,21 @@
     <!-- Final CTA Section -->
     <section class="final-cta" id="download">
         <div class="container">
-            <div class="cta-card">
+            <div class="cta-card" data-animation="scale-up">
                 <h2 class="cta-title">Ready to transform your classroom?</h2>
                 <p class="cta-description">Join our pre-launch waitlist to be among the first to utilize GuardRail. Sign up now for exclusive early access and pilot program information.</p>
                 
-                <button class="cta-button primary large eye-catching">Get Early Access</button>
+                <button class="cta-button primary large magnetic">
+                    <span class="btn-text">Get Early Access</span>
+                    <span class="btn-shine"></span>
+                </button>
                 
                 <div class="waitlist-notes">
-                    <div class="note-item">
+                    <div class="note-item" data-animation="stagger">
                         <span class="note-icon">✓</span>
                         <span class="note-text">Limited spots available</span>
                     </div>
-                    <div class="note-item">
+                    <div class="note-item" data-animation="stagger">
                         <span class="note-icon">✓</span>
                         <span class="note-text">No commitment required</span>
                     </div>
@@ -195,6 +377,13 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 GuardRail. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
