@@ -499,6 +499,7 @@ function initProtectedDownloads() {
             if (!href) return;
 
             showProtectedDownloadModal({
+                requiredPassword,
                 onSuccess: () => {
                     // Trigger the download via a temporary link.
                     const a = document.createElement('a');
@@ -517,7 +518,7 @@ function initProtectedDownloads() {
 /**
  * Custom password modal for protected downloads.
  */
-function showProtectedDownloadModal({ onSuccess, onCancel }) {
+function showProtectedDownloadModal({ requiredPassword, onSuccess, onCancel }) {
     // Prevent stacking multiple modals.
     const existing = document.querySelector('.protected-download-overlay');
     if (existing) existing.remove();
@@ -533,13 +534,16 @@ function showProtectedDownloadModal({ onSuccess, onCancel }) {
 
             <div class="protected-download-field">
                 <label for="protected-download-password" class="protected-download-label">Password</label>
-                <input
-                    id="protected-download-password"
-                    class="protected-download-input"
-                    type="password"
-                    autocomplete="current-password"
-                    spellcheck="false"
-                />
+                <div class="protected-download-input-row">
+                    <input
+                        id="protected-download-password"
+                        class="protected-download-input"
+                        type="password"
+                        autocomplete="current-password"
+                        spellcheck="false"
+                    />
+                    <button type="button" class="protected-download-toggle" data-modal-toggle-password="true" aria-label="Show password">Show</button>
+                </div>
             </div>
 
             <div class="protected-download-error" role="alert" hidden></div>
@@ -556,6 +560,7 @@ function showProtectedDownloadModal({ onSuccess, onCancel }) {
     const errorEl = overlay.querySelector('.protected-download-error');
     const closeBtn = overlay.querySelector('[data-modal-close="true"]');
     const submitBtn = overlay.querySelector('[data-modal-submit="true"]');
+    const toggleBtn = overlay.querySelector('[data-modal-toggle-password="true"]');
 
     const close = () => {
         overlay.remove();
@@ -564,9 +569,8 @@ function showProtectedDownloadModal({ onSuccess, onCancel }) {
     };
 
     const trySubmit = () => {
-        const required = 'classguardian';
         const entered = (input.value || '').trim();
-        if (entered !== required) {
+        if (entered !== requiredPassword) {
             errorEl.textContent = 'Incorrect password.';
             errorEl.hidden = false;
             input.focus();
@@ -580,6 +584,13 @@ function showProtectedDownloadModal({ onSuccess, onCancel }) {
 
     closeBtn.addEventListener('click', close);
     submitBtn.addEventListener('click', trySubmit);
+    toggleBtn.addEventListener('click', () => {
+        const showing = input.type === 'text';
+        input.type = showing ? 'password' : 'text';
+        toggleBtn.textContent = showing ? 'Show' : 'Hide';
+        toggleBtn.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+        input.focus();
+    });
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') trySubmit();
     });
