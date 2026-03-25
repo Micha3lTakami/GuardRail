@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initActiveNavHighlight();
     initScreenshotTilt();
+    initProtectedDownloads();
     
     console.log('✨ GuardRail flat design animations initialized');
 });
@@ -75,6 +76,7 @@ function initWithoutAnimations() {
     initHeader();
     initMobileMenu();
     initSmoothScroll();
+    initProtectedDownloads();
     
     console.log('🎯 GuardRail loaded (reduced motion mode)');
 }
@@ -478,6 +480,116 @@ function initSmoothScroll() {
             });
         });
     });
+}
+
+/**
+ * Password-gated downloads to prevent casual access.
+ * Note: This is not cryptographically secure; anyone who knows the URL can still download the file.
+ */
+function initProtectedDownloads() {
+    const protectedLinks = document.querySelectorAll('a[data-protected-download="true"]');
+    const requiredPassword = 'classguardian';
+    
+    protectedLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const href = link.getAttribute('href');
+            const download = link.getAttribute('download');
+            if (!href) return;
+
+            showProtectedDownloadModal({
+                onSuccess: () => {
+                    // Trigger the download via a temporary link.
+                    const a = document.createElement('a');
+                    a.href = href;
+                    if (download) a.setAttribute('download', download);
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                },
+                onCancel: () => {}
+            });
+        });
+    });
+}
+
+/**
+ * Custom password modal for protected downloads.
+ */
+function showProtectedDownloadModal({ onSuccess, onCancel }) {
+    // Prevent stacking multiple modals.
+    const existing = document.querySelector('.protected-download-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'protected-download-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.innerHTML = `
+        <div class="protected-download-modal">
+            <h3 class="protected-download-title">Protected Download</h3>
+            <p class="protected-download-subtitle">Enter the password to download the GuardRail pilot extension.</p>
+
+            <div class="protected-download-field">
+                <label for="protected-download-password" class="protected-download-label">Password</label>
+                <input
+                    id="protected-download-password"
+                    class="protected-download-input"
+                    type="password"
+                    autocomplete="current-password"
+                    spellcheck="false"
+                />
+            </div>
+
+            <div class="protected-download-error" role="alert" hidden></div>
+
+            <div class="protected-download-actions">
+                <button type="button" class="protected-download-btn protected-download-btn-secondary" data-modal-close="true">Cancel</button>
+                <button type="button" class="protected-download-btn protected-download-btn-primary" data-modal-submit="true">Download</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    const input = overlay.querySelector('#protected-download-password');
+    const errorEl = overlay.querySelector('.protected-download-error');
+    const closeBtn = overlay.querySelector('[data-modal-close="true"]');
+    const submitBtn = overlay.querySelector('[data-modal-submit="true"]');
+
+    const close = () => {
+        overlay.remove();
+        if (typeof onCancel === 'function') onCancel();
+        document.body.style.overflow = '';
+    };
+
+    const trySubmit = () => {
+        const required = 'classguardian';
+        const entered = (input.value || '').trim();
+        if (entered !== required) {
+            errorEl.textContent = 'Incorrect password.';
+            errorEl.hidden = false;
+            input.focus();
+            return;
+        }
+
+        errorEl.hidden = true;
+        close();
+        if (typeof onSuccess === 'function') onSuccess();
+    };
+
+    closeBtn.addEventListener('click', close);
+    submitBtn.addEventListener('click', trySubmit);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') trySubmit();
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+    });
+
+    document.body.style.overflow = 'hidden';
+    input.focus();
 }
 
 /**
